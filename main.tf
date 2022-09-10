@@ -19,16 +19,21 @@ resource "aws_instance" "dev" {
     tags = {
       "Name" = "dev${count.index}"
     }
+    vpc_security_group_ids = [aws_security_group.acesso-ssh.id]
 }
 
-resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+# resource "aws_vpc" "main" {
+#   cidr_block = "10.0.0.0/16"
+# }
+
+data "aws_vpc" "main" {
+  id = "vpc-0ca5493417621a83b"
 }
 
 resource "aws_security_group" "acesso-ssh" {
   name        = "acesso-ssh"
   description = "acesso-ssh"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = data.aws_vpc.main.id
 
   ingress {
     from_port        = 22
