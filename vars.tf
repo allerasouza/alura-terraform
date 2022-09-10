@@ -5,3 +5,8 @@ variable "amis" {
     "us-east-2" = "ami-0568773882d492fc8"
   }
 }
+
+variable "cdirs_acesso_remoto" {
+  type    = list(string)
+  default = ["191.13.39.108/32"]
+}

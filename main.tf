@@ -58,7 +58,7 @@ resource "aws_instance" "dev6" {
   }
   vpc_security_group_ids = [aws_security_group.acesso-ssh-us-east-2.id]
   subnet_id              = aws_subnet.my_subnet.id
-  depends_on = [aws_dynamodb_table.dynamodb-homologacao]
+  depends_on             = [aws_dynamodb_table.dynamodb-homologacao]
 }
 
 resource "aws_s3_bucket" "dev4" {
