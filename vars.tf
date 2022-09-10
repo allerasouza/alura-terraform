@@ -10,3 +10,7 @@ variable "cdirs_acesso_remoto" {
   type    = list(string)
   default = ["191.13.39.108/32"]
 }
+
+variable "key_name" {
+  default = "terraform-alura"
+}
