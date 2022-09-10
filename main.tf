@@ -22,6 +22,26 @@ resource "aws_instance" "dev" {
     vpc_security_group_ids = [aws_security_group.acesso-ssh.id]
 }
 
+resource "aws_instance" "dev4" {
+    ami = "ami-052efd3df9dad4825"
+    instance_type = "t2.micro"
+    key_name = "terraform-alura"
+    tags = {
+      "Name" = "dev4"
+    }
+    vpc_security_group_ids = [aws_security_group.acesso-ssh.id]
+}
+
+resource "aws_instance" "dev5" {
+    ami = "ami-052efd3df9dad4825"
+    instance_type = "t2.micro"
+    key_name = "terraform-alura"
+    tags = {
+      "Name" = "dev5"
+    }
+    vpc_security_group_ids = [aws_security_group.acesso-ssh.id]
+}
+
 # resource "aws_vpc" "main" {
 #   cidr_block = "10.0.0.0/16"
 # }
@@ -45,4 +65,17 @@ resource "aws_security_group" "acesso-ssh" {
   tags = {
     Name = "ssh"
   }
+}
+
+resource "aws_s3_bucket" "dev4" {
+  bucket = "aaslabs-dev4"
+
+  tags = {
+    Name        = "aaslabs-dev4"
+  }
+}
+
+resource "aws_s3_bucket_acl" "dev4" {
+  bucket = aws_s3_bucket.dev4.id
+  acl    = "private"
 }
